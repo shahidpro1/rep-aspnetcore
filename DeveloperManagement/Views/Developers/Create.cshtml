@@ -1,0 +1,63 @@
+﻿@model List<DeveloperManagement.Context.Developers>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table class="table" id="tblCreateNew">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Age
+                        </th>
+                        <th>
+                            JobTitle
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                   
+                    {
+                        <tr>
+                            <td>
+                                @Html.TextBoxFor(modelItem => modelItem[i].Name)
+                                <span>
+                                    @Html.ValidationMessageFor(modelItem => modelItem[i].Name)
+                                </span>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(modelItem => modelItem[i].Age)
+                                <span>
+                                    @Html.ValidationMessageFor(modelItem => modelItem[i].Age)
+                                </span>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(modelItem => modelItem[i].JobTitle)
+                                <span>
+                                    @Html.ValidationMessageFor(modelItem => modelItem[i].JobTitle)
+                                </span>
+                            </td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
